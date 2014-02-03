@@ -4,8 +4,8 @@
     "keywords": ["silex", "doctrine", "orm", "database", "extension", "provider"],
     "homepage": "https://github.com/ipcmedia/doctrine-orm-extension",
     "authors": [
-        { "name": "Radek Simko", "email": "radek_simko@ipcmedia.com" }
-        { "name": "Marc Jakubowski", "homepage": "http://nutwerk.de/" },
+        { "name": "Radek Simko", "email": "radek_simko@ipcmedia.com" },
+        { "name": "Marc Jakubowski", "homepage": "http://nutwerk.de/" }
     ],
     "require": {
         "php": ">=5.3.2",
