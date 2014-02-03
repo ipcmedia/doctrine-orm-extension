@@ -11,7 +11,8 @@
         "php": ">=5.3.2",
         "doctrine/orm": ">=2.1.0,<=2.2.3",
         "doctrine/common": ">=2.1.0,<=2.2.3",
-        "doctrine/dbal": ">=2.1.0,<=2.2.3"
+        "doctrine/dbal": ">=2.1.0,<=2.2.3",
+        "symfony/symfony": ">=2.0.0"
     },
     "suggest": {
         "symfony/console": "Necessary if you would like to use the Doctrine CLI tools"

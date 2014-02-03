@@ -18,8 +18,12 @@ use Doctrine\Common\EventManager;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
+use Symfony\Component\ClassLoader\UniversalClassLoader;
+
 class DoctrineORMServiceProvider implements ServiceProviderInterface
 {
+    private $autoloader;
+
     public function register(Application $app)
     {        
         $dbal = $app['db'];
@@ -27,13 +31,15 @@ class DoctrineORMServiceProvider implements ServiceProviderInterface
         if (!$dbal instanceof \Doctrine\DBAL\Connection) {
             throw new \InvalidArgumentException('$app[\'db\'] must be an instance of \Doctrine\DBAL\Connection'); 
         }
-        
+
+        $this->autoloader = new UniversalClassLoader();
+
         $this->loadDoctrineConfiguration($app);
         $this->setOrmDefaults($app);
         $this->loadDoctrineOrm($app);
 
         if(isset($app['db.orm.class_path'])) {
-            $app['autoloader']->registerNamespace('Doctrine\\ORM', $app['db.orm.class_path']);
+            $this->autoloader->registerNamespace('Doctrine\\ORM', $app['db.orm.class_path']);
         }
     }
 
@@ -103,7 +109,7 @@ class DoctrineORMServiceProvider implements ServiceProviderInterface
                         throw new \InvalidArgumentException(sprintf('"%s" is not a recognized driver', $entity['type']));
                         break;
                 }
-                $app['autoloader']->registerNamespace($entity['namespace'], $entity['path']);
+                $this->autoloader->registerNamespace($entity['namespace'], $entity['path']);
             }
             $config->setMetadataDriverImpl($chain);
 
