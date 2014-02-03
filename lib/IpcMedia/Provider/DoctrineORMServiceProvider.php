@@ -37,6 +37,11 @@ class DoctrineORMServiceProvider implements ServiceProviderInterface
         }
     }
 
+    public function boot(Application $app)
+    {
+        // Not being used, but interface requires it
+    }
+
     private function loadDoctrineOrm(Application $app)
     {
         $self = $this;
