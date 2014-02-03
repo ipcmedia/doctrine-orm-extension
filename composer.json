@@ -18,10 +18,5 @@
     },
     "autoload": {
         "psr-0": { "IpcMedia\\Provider": "lib/" }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
     }
 }
