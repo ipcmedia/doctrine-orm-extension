@@ -1,5 +1,5 @@
 <?php
-namespace Nutwerk\Provider;
+namespace IpcMedia\Provider;
 
 use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Configuration as DBALConfiguration;
