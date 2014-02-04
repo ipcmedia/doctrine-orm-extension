@@ -22,7 +22,7 @@ use Symfony\Component\ClassLoader\UniversalClassLoader;
 
 class DoctrineORMServiceProvider implements ServiceProviderInterface
 {
-    private $autoloader;
+    public $autoloader;
 
     public function register(Application $app)
     {
@@ -80,7 +80,8 @@ class DoctrineORMServiceProvider implements ServiceProviderInterface
 
     public function loadDoctrineConfiguration(Application $app)
     {
-        $app['db.orm.config'] = $app->share(function() use($app) {
+        $self = $this;
+        $app['db.orm.config'] = $app->share(function() use($app, $self) {
 
             $cache = $app['db.orm.cache'];
             $config = new ORMConfiguration;
@@ -109,7 +110,7 @@ class DoctrineORMServiceProvider implements ServiceProviderInterface
                         throw new \InvalidArgumentException(sprintf('"%s" is not a recognized driver', $entity['type']));
                         break;
                 }
-                $this->autoloader->registerNamespace($entity['namespace'], $entity['path']);
+                $self->autoloader->registerNamespace($entity['namespace'], $entity['path']);
             }
             $config->setMetadataDriverImpl($chain);
 
