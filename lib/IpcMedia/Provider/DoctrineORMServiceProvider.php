@@ -25,7 +25,7 @@ class DoctrineORMServiceProvider implements ServiceProviderInterface
     private $autoloader;
 
     public function register(Application $app)
-    {        
+    {
         $dbal = $app['db'];
 
         if (!$dbal instanceof \Doctrine\DBAL\Connection) {
